@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width", initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f2f2f2;
+        }
+        .container{
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        h1{
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .color-display{
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        #color-display{
+            font-weight: bold;
+        }
+        button{
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+        #simple-btn{
+            background-color: #4caf50;
+            color: white;
+        }
+        #hex-btn{
+            background-color: #2196f3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>color Flipper</h1>
+        <div class="color-display">Background Color: <span id="color-display"></span></div>
+        <button id="simple-btn">Simple</button>
+        <button id="hex-btn">Hex</button>
+        <br>
+    </div>
+    <script>
+        const colorDisplay = document.getElementById('color-display');
+        const simpleBtn = document.getElementById('simple-btn');
+        const hexBtn = document.getElementById('hex-btn');
+
+        const colors = ['red','orange','yellow','green','blue','indigo','violet'];
+        let isHex = false;
+        simpleBtn.addEventListener('click', () => {
+            isHex = false;
+            colorDisplay.textContent = colors[Math.floor(Math.random()* colors.length)];
+            document.body.style.backgroundColor = colorDisplay.textContent;
+        });
+        hexBtn.addEventListener('click', () =>{
+            isHex = true;
+            let randomColor = '#';
+            for(let i = 0; i < 6;i ++){
+                randomColor += Math.floor(Math.random() * 16).toString(16);
+            }
+            colorDisplay.textContent = randomColor;
+            document.body.style.backgroundColor = randomColor;
+        });
+        document.body.addEventListener('click',() => {
+            if(isHex){
+                hexBtn.click();
+            }else{
+                simpleBtn.click();
+            }
+        });
+                
+
+
+
+    </script>
+</body>
+</html>
